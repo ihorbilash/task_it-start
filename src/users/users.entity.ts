@@ -1,0 +1,18 @@
+import { Role } from "src/role/role.entity";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity({ name: "users" })
+export class User {
+    @PrimaryGeneratedColumn()
+    id: number;
+    @Column()
+    username: string;
+    @Column()
+    hash_password: string;
+
+    @JoinTable()
+    @ManyToOne(() => Role, {
+        cascade: true,
+    })
+    role: Role
+}

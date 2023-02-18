@@ -1,0 +1,71 @@
+.display-login {
+    width: 15%;
+    text-align: center;
+    margin: 50px auto;
+   
+}
+
+.display-input {
+    width: 40%;
+    text-align: center;
+    margin: 50px auto;
+    display: flex;
+}
+
+.centrino {
+
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin: 10px 20px;
+    border-radius: 30px;
+    background-color: rgb(185, 192, 94);
+}
+
+.input-data {
+
+    width: 100%;
+    text-align: center;
+    margin: 5px auto;
+    line-height: 2.4em;
+    border: 2px solid rgba(0, 0, 0, .08);
+    padding: 5px 10px;
+}
+
+.new_todo_button {
+    width: 20%;
+    background-color: lightseagreen;
+    align-items: center;
+    color: white;
+    margin: 5px auto;
+}
+.logout-btn{
+    background-color: lightseagreen;
+    color: white;
+    text-align: center;
+    margin: 10px auto;
+}
+.display-name{
+    width: 15%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+table {
+    margin: 20px auto;
+}
+
+thead {
+    border-collapse: collapse;
+}
+
+table th,
+td {
+
+    border: 3px solid lightseagreen
+}
+
+th,
+td {
+    padding: 10px;
+}
