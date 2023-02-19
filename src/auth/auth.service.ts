@@ -8,7 +8,6 @@ import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcryptjs';
 import { User } from 'src/users/users.entity';
 import { Roles } from 'src/role/roles.enum';
-import { Role } from 'src/role/role.entity';
 const SALT = 5;
 
 @Injectable()
@@ -24,8 +23,8 @@ export class AuthService {
         if (!potential_user) throw new BadRequestException('User is not exists');
         const isPasswordCorrect = await bcrypt.compare(createUserDto.password, potential_user.hash_password);
         if (!isPasswordCorrect) throw new BadRequestException('Password incorrect');
-        return await this.generateToken(potential_user)
-
+        const token = await this.generateToken(potential_user);
+        return { token, role: potential_user.role.name }
     }
 
 

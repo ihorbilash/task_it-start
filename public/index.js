@@ -13,8 +13,9 @@ function login() {
     })
         .then(res => res.json())
         .then(res => {
-            if (res.token) {
+            if (res.token && res.role) {
                 localStorage.setItem('name', username)
+                localStorage.setItem('role', res.role)
                 getUsers(res.token);
             } else if (res.message === 'Password incorrect') {
                 alert('Не вірна комбінація логіна чи пароля');
@@ -24,18 +25,9 @@ function login() {
         })
 }
 
-function getUsers(token) {
-    const route = 'http://localhost:3000/users/one';
-    window.location.href = `http://localhost:3000/users/one/?name=${localStorage.getItem('name')}`
-   /* fetch(route, {
-        method: 'POST',
-        headers: { authentication: `Bearer ${token}` }
-    }).then(res=>res.json())
-    .then(res=>{
-        if(res){
-            console.log('=>',res)
-        }
-    })*/
+function getUsers() {
+    const route = `http://localhost:3000/users/one/?name=${localStorage.getItem('name')}&role=${localStorage.getItem('role')}`
+    window.location.href = route;
 }
 
 function register() {
@@ -53,7 +45,7 @@ function register() {
         .then(res => res.json())
         .then(res => {
             if (res.token) {
-                alert(`${res.token}`);
+                alert(`Регестрація успішна`);
             } else if (res.error === 'Bad Request') {
                 alert('Такий користувач вже існує');
             } else {
