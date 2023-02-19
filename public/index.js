@@ -1,7 +1,4 @@
 
-
-
-
 function login() {
     const route = 'http://localhost:3000/auth/login';
     const username = document.getElementById("login-input").value.trim();
@@ -17,8 +14,8 @@ function login() {
         .then(res => res.json())
         .then(res => {
             if (res.token) {
+                localStorage.setItem('name', username)
                 getUsers(res.token);
-
             } else if (res.message === 'Password incorrect') {
                 alert('Не вірна комбінація логіна чи пароля');
             } else if (res.message === 'User is not exists') {
@@ -28,13 +25,17 @@ function login() {
 }
 
 function getUsers(token) {
-    const route = 'http://localhost:3000/users';
-    fetch(route, {
+    const route = 'http://localhost:3000/users/one';
+    window.location.href = `http://localhost:3000/users/one/?name=${localStorage.getItem('name')}`
+   /* fetch(route, {
         method: 'POST',
         headers: { authentication: `Bearer ${token}` }
-    });
-    //window.location.href = 'http://localhost:3000/users/all'
-   
+    }).then(res=>res.json())
+    .then(res=>{
+        if(res){
+            console.log('=>',res)
+        }
+    })*/
 }
 
 function register() {
@@ -60,4 +61,3 @@ function register() {
             }
         })
 }
-

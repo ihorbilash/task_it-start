@@ -37,7 +37,7 @@ export class AuthService {
         let new_user = new User();
         new_user.username = createUserDto.username;
         new_user.hash_password = hash_password;
-        const role = await this.roleService.findRole(Roles.USER);
+        const role = await this.roleService.findRole(Roles.USER);  // Хардкодом присвоюємо роль користувачу
         new_user.role = role;
         //-----
         await this.usersService.create(new_user);

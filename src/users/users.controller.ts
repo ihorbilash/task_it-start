@@ -1,37 +1,36 @@
-import { Body, Controller, Get, Post, Render, Res, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import {  Controller, Get, Render, Res, Query, UseGuards } from '@nestjs/common';
+import { RolesAcces } from 'src/role/roles-decorator';
+import { Roles } from 'src/role/roles.enum';
 
-import { CreateUserDto } from './dto/create-user';
 import { UsersService } from './users.service';
 
 @Controller('users')
-//@UseGuards(JwtAuthGuard,/*RolesGuard*/)
+//@UseGuards(JwtAuthGuard)
 export class UsersController {
 
     constructor(private userService: UsersService) { }
 
-
-
-    @Post()
-    //@UseGuards(JwtAuthGuard)
+    
+    @Get('one')
+    @RolesAcces(Roles.USER)
     @Render('user-in')
-   async redirect(@Res() res) {
-        const {message} =await this.userService.findAllUsers();
-        console.log("======================================>>",message)
-        res.message
-       return res.redirect('users/all');
+    async findOneUser(@Query('name') name) {
+        console.log('=>',name)
+      const {username,role} = await this.userService.getUserByLogin(name)
+      console.log('=>',username," ", role.name)
+      return {username,role}  
     }
+
 
 
     @Get('all')
-    //@Render('user-in')
-    async findAllUsers() {
-       
-        const data =await this.userService.findAllUsers();
-        console.log("======================================>>",data)
-        return data
+    @RolesAcces(Roles.ADMIN)
+    @Render('user-in')
+    async findAllUsers(@Res() res) {
+      const data = await this.userService.findAllUsers();
+      console.log('=>',data)
+      return {message:data}  
     }
 
-
-
+   
 }

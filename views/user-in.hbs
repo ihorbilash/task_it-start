@@ -5,12 +5,14 @@
     <meta charset="utf-8" />
     <title>App</title>
 </head>
+<link rel="stylesheet" href="../public/stylesheet.css">
+<script src="../public/index.js"></script>
+
 
 <body>
-    <h1> here we can see all users by role:</h1>
-    {{#each message}}
-    
-{{/each}}
+    <div class="display-login">
+        <h1 style="text-align: center;">Вхід успішний. Ласкаво просимо {{username}}. Ваша роль – {{role.name}}».</h1>
+    </div>
 </body>
 
 

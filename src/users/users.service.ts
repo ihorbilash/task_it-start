@@ -16,9 +16,9 @@ export class UsersService {
         const user = await this.userRepository.findOne({ where: { username }, relations: ['role'] });
         return user;
     }
+   
 
     async findAllUsers() {
-        const data = await this.userRepository.find({ relations: ['role'] })
-        return { message: data }
+       return await this.userRepository.find({ relations: ['role'] }) 
     }
 }

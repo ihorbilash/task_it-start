@@ -9,6 +9,9 @@ export class RoleService {
 
     constructor(@InjectRepository(Role) private roleRepository: Repository<Role>) { }
 
+    /**
+     * Хардкодом наливаємо в базу данних список дозволених користувачів
+     */
     async createAvalibleRoles() {
         for (const el in Roles) {
             console.log(el)
