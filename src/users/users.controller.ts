@@ -1,11 +1,11 @@
 import {  Controller, Get, Render, Res, Query, UseGuards } from '@nestjs/common';
+import { RoleGuard } from 'src/role/role.guard';
 import { RolesAcces } from 'src/role/roles-decorator';
 import { Roles } from 'src/role/roles.enum';
 
 import { UsersService } from './users.service';
 
 @Controller('users')
-//@UseGuards(JwtAuthGuard)
 export class UsersController {
 
     constructor(private userService: UsersService) { }
@@ -13,6 +13,7 @@ export class UsersController {
     
     @Get('one')
     @RolesAcces(Roles.USER)
+    //@UseGuards(RoleGuard)   закоментовано бо не правильно відпрацьовує
     @Render('user-in')
     async findOneUser(@Query('name') name) {
         console.log('=>',name)
@@ -25,11 +26,12 @@ export class UsersController {
 
     @Get('all')
     @RolesAcces(Roles.ADMIN)
-    @Render('user-in')
+    //@UseGuards(RoleGuard)      закоментовано бо не правильно відпрацьовує
+    @Render('admin-in')
     async findAllUsers(@Res() res) {
       const data = await this.userService.findAllUsers();
       console.log('=>',data)
-      return {message:data}  
+      return {users:data}  
     }
 
    

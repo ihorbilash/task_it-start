@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>App</title>
+</head>
+<link rel="stylesheet" href="../public/stylesheet.css">
+<script src="../public/index.js"></script>
+
+
+<body>
+    <div class="display-login">
+        <h1 style="text-align: center;">Вхід успішний. Для адміна.</h1>
+        {{#each users}}
+        <li>{{username}}" "{{role.name}} </li>
+        {{/each}}
+    </div>
+</body>
+
+
+
+</html>
