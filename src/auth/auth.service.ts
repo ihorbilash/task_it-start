@@ -12,11 +12,16 @@ const SALT = 5;
 
 @Injectable()
 export class AuthService {
+    
 
     constructor(private usersService: UsersService,
         private jwtService: JwtService,
         private roleService: RoleService
     ) { }
+
+    validateUser(username: string, password: string) {
+        throw new Error('Method not implemented.');
+    }
 
     async login(createUserDto: CreateUserDto) {
         const potential_user = await this.usersService.getUserByLogin(createUserDto.username);
