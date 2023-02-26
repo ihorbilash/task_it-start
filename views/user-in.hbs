@@ -5,15 +5,17 @@
     <meta charset="utf-8" />
     <title>App</title>
 </head>
-<link rel="stylesheet" href="../public/stylesheet.css">
-<script src="../public/index.js"></script>
+<link rel="stylesheet" href="stylesheet.css">
+<script src="/index.js"></script>
 
 
 <body>
     <div class="display-login">
-        <h1 style="text-align: center;">Вхід успішний. Ласкаво просимо {{username}}. Ваша роль – {{role.name}}».</h1>
+        <h1 style="text-align: center;">Вхід успішний. Ласкаво просимо {{name}}. Ваша роль – {{role}}».</h1>
         
-         <a style="text-align: center;" href="http://localhost:3000/users/all">Увійти на Адмін лінк
+        <button onclick="goToAdmLink()">go to Admmin link</button>
+        
+          
     </div>
 </body>
 

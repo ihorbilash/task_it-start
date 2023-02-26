@@ -11,7 +11,8 @@
 
 <body>
     <div class="display-login">
-        <h1 style="text-align: center;">Вхід успішний. Для адміна.</h1>
+        <h1 style="text-align: center;">Вхід успішний для {{role}}, ласкаво просимо {{name}}. Нижче список:».</h1>
+    
         {{#each users}}
         <li>{{username}}" "{{role.name}} </li>
         {{/each}}
